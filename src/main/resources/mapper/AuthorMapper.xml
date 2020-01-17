@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ir.site.dao.AuthorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ir.site.entity.Author">
+        <result column="passage" property="passage" />
+        <result column="author" property="author" />
+    </resultMap>
+
+    <insert id="addPassage" parameterType="com.ir.site.entity.Author">
+        insert into author (passage, author) values (#{passage}, #{author})
+    </insert>
+    <select id="getPassageByAuthor" resultType="String">
+        select passage from author where author = #{author}
+    </select>
+</mapper>
