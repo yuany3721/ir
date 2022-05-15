@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.yuany3721.ir.dao.TitleInvertedMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="top.yuany3721.ir.entity.TitleInverted">
+        <result column="word" property="word" />
+        <result column="passage" property="passage" />
+    </resultMap>
+
+    <insert id="addPassage" parameterType="top.yuany3721.ir.entity.TitleInverted">
+        insert into title_inverted (word, passage) values (#{word}, #{passage})
+    </insert>
+
+    <select id="getPassageByWord" resultType="String">
+        select passage from title_inverted where word = #{word}
+    </select>
+
+</mapper>

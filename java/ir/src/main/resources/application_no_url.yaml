@@ -1,0 +1,53 @@
+server:
+    port: 8081
+spring:
+    config:
+        activate:
+            on-profile:
+                - dev
+---
+spring:
+    main:
+        banner-mode: off
+    application:
+        name: ir
+    profiles:
+        active: dev
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: Your Database Url
+        username: username
+        password: password
+        druid:
+            initialSize: 5
+            minIdle: 5
+            maxActive: 20
+            maxWait: 60000
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 30000
+            validationQuery: SELECT 1 FROM DUAL
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: false
+            maxPoolPreparedStatementPerConnectionSize: -1
+            filters: stat,wall
+            connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+            useGlobalDataSourceStat: false
+
+# logging:
+#     level:
+# "[top.yuany3721.ir.dao]": DEBUG
+# "[top.yuany3721.ir.controller]": DEBUG
+
+#springboot   mybatis
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: top.yuany3721.ir.entity
+    configuration:
+        map-underscore-to-camel-case: true
+mybatis-plus:
+    mapper-locations: classpath*:/mapper/*.xml
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
